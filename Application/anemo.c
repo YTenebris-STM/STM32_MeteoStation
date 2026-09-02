@@ -4,8 +4,8 @@
 
 #define CALIB_K 1
 #define CALIB_B 0
+#define ANEMO_SIZE 1
 
-#define ANEMO_SIZE 8
 static uint16_t Anemo_Buffer[ANEMO_SIZE] = {0};
 static uint8_t index = 0;
 static uint8_t count = 0;
@@ -48,5 +48,6 @@ void Anemo_GetData (MeteoData* meteo)
 	Anemo_AddToBuffer(speed);
 	
 	Anemo_GetAvgSpeed(&meteo->wind_speed);
+
 }
 
