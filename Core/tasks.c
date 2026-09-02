@@ -5,6 +5,8 @@
 #include "ultraviolet.h"
 #include "ds3231.h"
 #include "history.h"
+#include "apptemp.h"
+#include "anemo.h"
 
 extern volatile uint8_t current_page;
 extern volatile uint8_t page_changed;
@@ -20,14 +22,15 @@ void Task_Display (void)
 		{
 			case 0 : 
 				OLED_Print(0, " HH:MM:SS dd.mm ");
-				OLED_Print(1, "Temp:  +12.34 Â°C");
+				OLED_Print(1, "Temp:  +12.34 °C");
 				OLED_Print(2, "Press: 101225 Pa");
 				OLED_Print(3, "Humid: 98.76  % ");
 				break;
 			case 1 :
-				OLED_Print(0, "App temp: +01 Â°C");
+				OLED_Print(0, "App temp: +01 °C");
 				OLED_Print(1, "UV index: 23");
 				OLED_Print(2, "Zambretti: 45");
+				OLED_Print(3, "Wind: 67.8 mps");
 				break;
 				
 		}
@@ -85,7 +88,18 @@ void Task_LED (void)
 	
 	GPIOB->ODR ^= GPIO_ODR_ODR2;
 }
-	
+
+void Task_Anemo (void)
+{
+	Anemo_GetData(&meteo);
+}
+
+
+void Task_AppTemp (void)
+{
+	AppTemp_GetData(&meteo);
+}
+
 
 
 

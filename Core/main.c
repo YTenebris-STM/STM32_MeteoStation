@@ -6,6 +6,7 @@
 #include "bme280.h"
 #include "ds3231.h"
 #include "adc.h"
+#include "tim3.h"
 
 #define NUM_PAGES 2
 
@@ -29,6 +30,7 @@ int main (void)
 	RTC_Init();
 	ADC_Init();
 	Interrupt_PA0_Init();
+	TIM3_Init();
 	
 	// Initialize the application scheduler
 	

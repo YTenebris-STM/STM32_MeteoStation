@@ -7,12 +7,14 @@
 
 typedef struct 
 {
-	int32_t  temp;
-	uint32_t press;
-	uint32_t humid;
-	uint32_t time;
-	uint16_t uv;
-	uint8_t  zmbr;
+	int32_t  temp;         // °C * 100
+	uint32_t press;        // Pa
+	uint32_t humid;        // % * 100
+	uint32_t time;         // seconds
+	uint16_t uv;           // index (0...11)
+	uint8_t  zmbr;         // index (1...26)
+	uint16_t  wind_speed;   // mps * 100
+	int16_t  apptemp;      // °C * 10
 } MeteoData;
 
 extern MeteoData meteo;

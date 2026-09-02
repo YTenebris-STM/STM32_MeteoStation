@@ -11,6 +11,8 @@
 #define RTC_PERIOD 1000
 #define ZAMBRETTI_PERIOD 300000
 #define LED_PERIOD 100
+#define APPTEMP_PERIOD 5000
+#define ANEMO_PERIOD 1000
 
 static uint32_t display_time;
 static uint32_t bme280_time;
@@ -18,6 +20,8 @@ static uint32_t uv_time;
 static uint32_t rtc_time;
 static uint32_t zambretti_time;
 static uint32_t led_time;
+static uint32_t apptemp_time;
+static uint32_t anemo_time;
 
 extern volatile uint8_t page_changed;
 
@@ -85,6 +89,17 @@ void Scheduler_Run (void)
 		Task_Display();
 		display_time = now;
 	}
-
+	
+	if (now - apptemp_time >= APPTEMP_PERIOD)
+	{	
+		apptemp_time += 100;
+		Task_AppTemp();
+	}
+	
+	if (now - anemo_time >= ANEMO_PERIOD)
+	{	
+		anemo_time += 100;
+		Task_Anemo();
+	}
 		
 }
