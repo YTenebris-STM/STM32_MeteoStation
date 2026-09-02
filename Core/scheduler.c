@@ -37,6 +37,8 @@ void Scheduler_Init (void)
 	rtc_time = now;
 	zambretti_time = now;
 	led_time = now;
+	apptemp_time = now;
+	anemo_time = now;
 }
 
 
@@ -48,37 +50,37 @@ void Scheduler_Run (void)
 	
 	if (now - display_time >= DISPLAY_PERIOD)
 	{	
-		display_time += 1000;
+		display_time += DISPLAY_PERIOD;
 		Task_Display();
 	}
 		
 	if (now - bme280_time >= BME280_PERIOD)
 	{	
-		bme280_time += 1000;
+		bme280_time += BME280_PERIOD;
 		Task_BME280();
 	}
 	
 	if (now - uv_time >= UV_PERIOD)
 	{	
-		uv_time += 1000;
+		uv_time += UV_PERIOD;
 		Task_UVI();
 	}
 		
 	if (now - rtc_time >= RTC_PERIOD)
 	{	
-		rtc_time += 1000;
+		rtc_time += RTC_PERIOD;
 		Task_RTC();
 	}
 	
 	if (now - zambretti_time >= ZAMBRETTI_PERIOD)
 	{	
-		zambretti_time += 300000;
+		zambretti_time += ZAMBRETTI_PERIOD;
 		Task_Zambretti();
 	}
 		
 	if (now - led_time >= LED_PERIOD)
 	{	
-		led_time += 100;
+		led_time += LED_PERIOD;
 		Task_LED();
 	}
 	
@@ -92,13 +94,13 @@ void Scheduler_Run (void)
 	
 	if (now - apptemp_time >= APPTEMP_PERIOD)
 	{	
-		apptemp_time += 100;
+		apptemp_time += APPTEMP_PERIOD;
 		Task_AppTemp();
 	}
 	
 	if (now - anemo_time >= ANEMO_PERIOD)
 	{	
-		anemo_time += 100;
+		anemo_time += ANEMO_PERIOD;
 		Task_Anemo();
 	}
 		

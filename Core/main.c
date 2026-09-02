@@ -8,7 +8,7 @@
 #include "adc.h"
 #include "tim3.h"
 
-#define NUM_PAGES 2
+#define NUM_PAGES 3
 
 volatile uint8_t current_page = 0;
 volatile uint8_t page_changed = 1;

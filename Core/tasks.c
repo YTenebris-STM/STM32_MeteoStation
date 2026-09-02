@@ -20,13 +20,19 @@ void Task_Display (void)
 		OLED_Clear();
 		switch (current_page)
 		{
-			case 0 : 
+			case 0 :
+				OLED_Print(0, "  MeteoStation  ");
+				OLED_Print(1, "    HH:MM:SS    ");
+				OLED_Print(2, "Day.  dd.mm.20yy");
+				OLED_Print(3, "Status:       OK");
+				break;
+			case 1 : 
 				OLED_Print(0, " HH:MM:SS dd.mm ");
 				OLED_Print(1, "Temp:  +12.34 °C");
 				OLED_Print(2, "Press: 101225 Pa");
 				OLED_Print(3, "Humid: 98.76  % ");
 				break;
-			case 1 :
+			case 2 :
 				OLED_Print(0, "App temp: +01 °C");
 				OLED_Print(1, "UV index: 23");
 				OLED_Print(2, "Zambretti: 45");
@@ -45,6 +51,9 @@ void Task_Display (void)
 			break;
 		case 1 :
 			OLED_SetPage1(&meteo);
+			break;
+		case 2 :
+			OLED_SetPage2(&meteo);
 			break;
 	}
 	
@@ -71,7 +80,7 @@ void Task_RTC (void)
 {
 	// Read and update the current time
 	
-	RTC_GetTime(&meteo.time);
+	RTC_GetTime(&meteo);
 }
 
 void Task_Zambretti (void)
