@@ -194,5 +194,11 @@ void OLED_SetPage1 (MeteoData* meteo)
 	OLED_SetChar(2, 11, '0' + (meteo->zmbr / 10));
 	OLED_SetChar(2, 12, '0' + (meteo->zmbr % 10));
 	
+	uint16_t integ = meteo->wind_speed / 100;
+	uint16_t fract = meteo->wind_speed % 100;	
 	
+	OLED_SetChar(3, 6, '0' + (integ / 10));
+	OLED_SetChar(3, 7, '0' + (integ % 10));
+	OLED_SetChar(3, 8, '.');
+	OLED_SetChar(3, 9, '0' + (fract / 10));	
 }
