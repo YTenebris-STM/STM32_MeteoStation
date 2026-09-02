@@ -130,21 +130,39 @@ void OLED_Print (uint8_t row, const char *str)
 	}
 }	
 
-
 void OLED_SetPage0 (MeteoData* meteo)
 {
-	// Draw the main weather data page
-
-	uint8_t h = meteo->time / 3600;
-	uint8_t m = (meteo->time % 3600) / 60;
-	uint8_t s = meteo->time % 60;
+	// Draw the main data page
 	
-	OLED_SetChar(0, 1, '0' + (h / 10));
-	OLED_SetChar(0, 2, '0' + (h % 10));
-	OLED_SetChar(0, 4, '0' + (m / 10));
-	OLED_SetChar(0, 5, '0' + (m % 10));
-	OLED_SetChar(0, 7, '0' + (s / 10));
-	OLED_SetChar(0, 8, '0' + (s % 10));
+	OLED_SetChar(1, 4 , '0' + (meteo->hours / 10));
+	OLED_SetChar(1, 5 , '0' + (meteo->hours % 10));
+	OLED_SetChar(1, 7 , '0' + (meteo->minutes / 10));
+	OLED_SetChar(1, 8 , '0' + (meteo->minutes % 10));
+	OLED_SetChar(1, 10, '0' + (meteo->seconds / 10));
+	OLED_SetChar(1, 11, '0' + (meteo->seconds % 10));
+	OLED_Print(2, meteo->week);
+	OLED_SetChar(2, 6 , '0' + (meteo->day / 10));
+	OLED_SetChar(2, 7 , '0' + (meteo->day % 10));
+	OLED_SetChar(2, 9 , '0' + (meteo->month / 10));
+	OLED_SetChar(2, 10, '0' + (meteo->month % 10));
+	OLED_SetChar(2, 14, '0' + (meteo->year / 10));
+	OLED_SetChar(2, 15, '0' + (meteo->year % 10));
+}
+
+void OLED_SetPage1 (MeteoData* meteo)
+{
+	// Draw the weather data page
+	
+	OLED_SetChar(0, 1, '0' + (meteo->hours / 10));
+	OLED_SetChar(0, 2, '0' + (meteo->hours % 10));
+	OLED_SetChar(0, 4, '0' + (meteo->minutes / 10));
+	OLED_SetChar(0, 5, '0' + (meteo->minutes % 10));
+	OLED_SetChar(0, 7, '0' + (meteo->seconds / 10));
+	OLED_SetChar(0, 8, '0' + (meteo->seconds % 10));
+	OLED_SetChar(0, 10, '0' + (meteo->day / 10));
+	OLED_SetChar(0, 11, '0' + (meteo->day % 10));
+	OLED_SetChar(0, 13, '0' + (meteo->month / 10));
+	OLED_SetChar(0, 14, '0' + (meteo->month % 10));
 	
 	int32_t temp = meteo->temp;
 	if (temp < 0) 
@@ -184,7 +202,7 @@ void OLED_SetPage0 (MeteoData* meteo)
 	OLED_SetChar(3, 11, '0' + (fract % 10));
 }
 
-void OLED_SetPage1 (MeteoData* meteo)
+void OLED_SetPage2 (MeteoData* meteo)
 {
 	// Draw the additional weather data page
 	
@@ -201,4 +219,20 @@ void OLED_SetPage1 (MeteoData* meteo)
 	OLED_SetChar(3, 7, '0' + (integ % 10));
 	OLED_SetChar(3, 8, '.');
 	OLED_SetChar(3, 9, '0' + (fract / 10));	
+	
+	int32_t apptemp = meteo->apptemp;
+	if (apptemp < 0) 
+	{
+		OLED_SetChar(0, 10, '-');
+		apptemp *= (-1);
+	}
+	else 
+	{
+		OLED_SetChar(0, 10, '+');
+	}
+		
+	integ = apptemp / 10;
+	
+	OLED_SetChar(0, 11, '0' + (integ / 10));
+	OLED_SetChar(0, 12, '0' + (integ % 10));	
 }

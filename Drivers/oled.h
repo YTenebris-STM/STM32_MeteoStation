@@ -10,5 +10,6 @@ void OLED_Update (void);
 void OLED_Print (uint8_t row, const char *str);
 void OLED_SetPage0 (MeteoData* meteo);
 void OLED_SetPage1 (MeteoData* meteo);
+void OLED_SetPage2 (MeteoData* meteo);
 
 #endif
