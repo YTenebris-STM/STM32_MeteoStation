@@ -3,6 +3,6 @@
 
 #include "sys_data.h"
 
-void AppTemp_GetData(MeteoData *meteo);
+void AppTemp_GetData(SystemData* sys);
 
 #endif

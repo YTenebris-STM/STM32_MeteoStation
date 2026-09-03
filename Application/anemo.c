@@ -41,13 +41,12 @@ void Anemo_AddToBuffer (uint16_t speed)
 	if (count < ANEMO_SIZE) count++;
 }
 
-void Anemo_GetData (MeteoData* meteo)
+void Anemo_GetData (SystemData* sys)
 {
 	uint16_t speed;
 	if (!Anemo_GetInstSpeed(&speed)) return;
 	Anemo_AddToBuffer(speed);
 	
-	Anemo_GetAvgSpeed(&meteo->wind_speed);
-
+	Anemo_GetAvgSpeed(&sys->meteo->wind_speed);
 }
 

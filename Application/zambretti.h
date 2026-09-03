@@ -3,6 +3,6 @@
 
 #include "sys_data.h"
 
-void Zambretti_GetData (MeteoData* meteo);
+void Zambretti_GetData (SystemData* sys);
 
 #endif

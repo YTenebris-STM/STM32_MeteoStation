@@ -8,11 +8,11 @@ static MeteoData HISTORY_Buffer[HISTORY_SIZE] = {0};
 static uint8_t index = 0;
 static uint8_t count = 0;
 
-void HISTORY_Add (MeteoData* meteo)
+void HISTORY_Add (SystemData* sys)
 {
 	// Add a measurement to the circular history buffer
 	
-	HISTORY_Buffer[index] = *meteo;
+	HISTORY_Buffer[index] = *sys->meteo;
 	index++;
 	if (index >= HISTORY_SIZE) index = 0;
 	if (count < HISTORY_SIZE) count++;

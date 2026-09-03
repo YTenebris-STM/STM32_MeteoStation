@@ -1,8 +1,8 @@
 #ifndef ULTRAVIOLET_H
 #define ULTRAVIOLET_H
 
-#include "stm32f10x.h"
+#include "sys_data.h"
 
-void UV_GetData (uint16_t* uv);
+void UV_GetData (SystemData* sys);
 
 #endif

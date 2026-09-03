@@ -16,13 +16,13 @@ float Zambretti_GetSLP (MeteoData* meteo)
 	return P0;
 }
 
-void Zambretti_GetData (MeteoData* meteo)
+void Zambretti_GetData (SystemData* sys)
 {
 	// Calculate and update the Zambretti forecast
 	
 	if (!HISTORY_IsFull())
 	{
-		meteo->zmbr = 0;
+		sys->meteo->zmbr = 0;
 		return;
 	}
 	
@@ -51,5 +51,5 @@ void Zambretti_GetData (MeteoData* meteo)
 	if (z < 1.0f) z = 1.0f;
 	if (z > 26.0f) z = 26.0f;
 	
-	meteo->zmbr = (uint8_t)(z + 0.5f);
+	sys->meteo->zmbr = (uint8_t)(z + 0.5f);
 }

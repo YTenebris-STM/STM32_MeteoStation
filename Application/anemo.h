@@ -3,6 +3,6 @@
 
 #include "sys_data.h"
 
-void Anemo_GetData (MeteoData* meteo);
+void Anemo_GetData (SystemData* sys);
 
 #endif
