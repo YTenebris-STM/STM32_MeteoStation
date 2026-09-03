@@ -1,6 +1,7 @@
 #include "bme280.h"
 #include "i2c.h"
 #include "delay.h"
+#include "stm32f10x.h"
 
 typedef struct 
 {
@@ -134,14 +135,13 @@ void BME280_GetHumid (int32_t hum_raw, int32_t t_fine, uint32_t* humid)
 	*humid = ((uint32_t)(var1 >> 12) * 100) / 1024;
 }
 
-void BME280_GetData (int32_t* temp, uint32_t* press, uint32_t* humid)
+void BME280_GetData (SystemData* sys)
 {
 	// Read sensor data and update the measurement structure
 	
 	int32_t raw_temp, raw_press, raw_humid;
 	BME280_GetRawData(&raw_temp, &raw_press, &raw_humid);
-	
-	int32_t t_fine = BME280_GetTemp(raw_temp, temp);
-	BME280_GetPress(raw_press, t_fine, press);
-	BME280_GetHumid(raw_humid, t_fine, humid);
+	int32_t t_fine = BME280_GetTemp(raw_temp, &sys->meteo->temp);
+	BME280_GetPress(raw_press, t_fine, &sys->meteo->press);
+	BME280_GetHumid(raw_humid, t_fine, &sys->meteo->humid);
 }

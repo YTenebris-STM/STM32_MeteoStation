@@ -60,13 +60,13 @@ void RTC_Init(void)
 }
 
 
-void RTC_GetTime(MeteoData* meteo)
+void RTC_GetTime(SystemData* sys)
 {
-	meteo->seconds = RTC_ReadTime(0x00);
-	meteo->minutes = RTC_ReadTime(0x01);
-	meteo->hours   = RTC_ReadTime(0x02);
-	meteo->week    = week[RTC_ReadTime(0x03) - 1];
-	meteo->day     = RTC_ReadTime(0x04);
-	meteo->month   = RTC_ReadTime(0x05);
-	meteo->year    = RTC_ReadTime(0x06);
+	sys->time->seconds = RTC_ReadTime(0x00);
+	sys->time->minutes = RTC_ReadTime(0x01);
+	sys->time->hours   = RTC_ReadTime(0x02);
+	sys->time->week    = week[RTC_ReadTime(0x03) - 1];
+	sys->time->day     = RTC_ReadTime(0x04);
+	sys->time->month   = RTC_ReadTime(0x05);
+	sys->time->year    = RTC_ReadTime(0x06);
 }

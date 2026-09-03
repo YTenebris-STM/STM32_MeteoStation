@@ -8,8 +8,8 @@ void OLED_Init (void);
 void OLED_Clear (void);
 void OLED_Update (void);
 void OLED_Print (uint8_t row, const char *str);
-void OLED_SetPage0 (MeteoData* meteo);
-void OLED_SetPage1 (MeteoData* meteo);
-void OLED_SetPage2 (MeteoData* meteo);
+void OLED_SetPage0 (SystemData* sys);
+void OLED_SetPage1 (SystemData* sys);
+void OLED_SetPage2 (SystemData* sys);
 
 #endif

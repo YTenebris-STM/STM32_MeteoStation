@@ -4,6 +4,6 @@
 #include "sys_data.h"
 
 void RTC_Init (void);
-void RTC_GetTime (MeteoData *meteo);
+void RTC_GetTime (SystemData *sys);
 
 #endif
