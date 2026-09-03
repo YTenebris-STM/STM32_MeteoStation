@@ -2,4 +2,8 @@
 
 MeteoData meteo;
 TimeData time;
-SystemData sys;
+SystemData sys = 
+{
+	.time = &time,
+	.meteo = &meteo
+};
