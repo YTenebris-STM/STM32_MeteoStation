@@ -5,7 +5,7 @@
 
 // Configure weather data structure
 
-typedef struct 
+typedef struct
 {
 	uint8_t     seconds;
 	uint8_t     minutes;
@@ -14,6 +14,10 @@ typedef struct
 	uint8_t     day;
 	uint8_t     month;
 	uint8_t     year;
+} TimeData;
+
+typedef struct 
+{
 	int32_t     temp;         // °C * 100
 	uint32_t    press;        // Pa
 	uint32_t    humid;        // % * 100
@@ -23,6 +27,12 @@ typedef struct
 	int16_t     apptemp;      // °C * 10
 } MeteoData;
 
-extern MeteoData meteo;
+typedef struct
+{
+	TimeData* time;
+	MeteoData* meteo;
+} SystemData;
+
+extern SystemData sys;
 
 #endif

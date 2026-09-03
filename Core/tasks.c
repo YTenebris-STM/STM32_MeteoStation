@@ -47,13 +47,13 @@ void Task_Display (void)
 	switch (current_page)
 	{
 		case 0 : 
-			OLED_SetPage0(&meteo);
+			OLED_SetPage0(&sys);
 			break;
 		case 1 :
-			OLED_SetPage1(&meteo);
+			OLED_SetPage1(&sys);
 			break;
 		case 2 :
-			OLED_SetPage2(&meteo);
+			OLED_SetPage2(&sys);
 			break;
 	}
 	
@@ -66,29 +66,29 @@ void Task_BME280 (void)
 {
 	// Read temperature, pressure and humidity
 	
-	BME280_GetData(&meteo.temp, &meteo.press, &meteo.humid);
+	BME280_GetData(&sys);
 }
 
 void Task_UVI (void)
 {
 	// Read and update the UV index
-	
-	UV_GetData(&meteo.uv);
+
+	UV_GetData(&sys);
 }
 
 void Task_RTC (void)
 {
 	// Read and update the current time
 	
-	RTC_GetTime(&meteo);
+	RTC_GetTime(&sys);
 }
 
 void Task_Zambretti (void)
 {
 	// Calculate and update the Zambretti forecast
 	
-	HISTORY_Add(&meteo);
-	Zambretti_GetData(&meteo);
+	HISTORY_Add(&sys);
+	Zambretti_GetData(&sys);
 }
 
 void Task_LED (void)
@@ -100,13 +100,13 @@ void Task_LED (void)
 
 void Task_Anemo (void)
 {
-	Anemo_GetData(&meteo);
+	Anemo_GetData(&sys);
 }
 
 
 void Task_AppTemp (void)
 {
-	AppTemp_GetData(&meteo);
+	AppTemp_GetData(&sys);
 }
 
 
